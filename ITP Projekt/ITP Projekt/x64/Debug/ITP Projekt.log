@@ -1,5 +1,2 @@
-﻿  ITP Projekt.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Tools\MSVC\14.35.32215\include\filesystem(13): warning STL4038: The contents of <filesystem> are available only with C++17 or later.
-C:\Users\Deniz\source\repos\ITP Projekt\ITP Projekt\ITP Projekt.cpp(76,1): warning C4005: "UNICODE": Makro-Neudefinition
-C:\Users\Deniz\source\repos\ITP Projekt\ITP Projekt\ITP Projekt.cpp(76,1): message : „UNICODE“ wurde zuvor in der Befehlszeile deklariert
+﻿  Main.cpp
   ITP Projekt.vcxproj -> C:\Users\Deniz\source\repos\ITP Projekt\x64\Debug\ITP Projekt.exe
