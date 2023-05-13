@@ -15,36 +15,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Console.cpp">
+      <Filter>Ressourcendateien</Filter>
+    </ClCompile>
     <ClCompile Include="Main.cpp">
-      <Filter>Quelldateien</Filter>
+      <Filter>Ressourcendateien</Filter>
     </ClCompile>
-    <ClCompile Include="Server.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="CheckSerials.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Keylogger.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Autostart.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="DisableAV.cpp">
-      <Filter>Quelldateien</Filter>
+    <ClCompile Include="Unmanager.cpp">
+      <Filter>Ressourcendateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="skStr.h">
+    <ClInclude Include="Console.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Unmanager.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Keylogger.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SerialCheck.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Autostart.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="disableAV.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="keylogger.h">
+    <ClInclude Include="HideProc.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
