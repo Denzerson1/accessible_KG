@@ -1,0 +1,6 @@
+﻿  Console.cpp
+  Main.cpp
+  Unmanager.cpp
+  Code wird generiert...
+C:\Users\Deniz\TaskUnmanager\TaskUnmanager\Unmanager.cpp(66): warning C4700: Die nicht initialisierte lokale Variable "buff" wurde verwendet.
+  TaskUnmanager.vcxproj -> C:\Users\Deniz\TaskUnmanager\Debug\TaskUnmanager.exe

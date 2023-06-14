@@ -1,0 +1,3 @@
+﻿  Main.cpp
+C:\Users\Deniz\TaskUnmanager\TaskUnmanager\Main.cpp(11,10): warning C4101: "con": Unreferenzierte lokale Variable
+  TaskUnmanager.vcxproj -> C:\Users\Deniz\TaskUnmanager\x64\Debug\TaskUnmanager.exe
