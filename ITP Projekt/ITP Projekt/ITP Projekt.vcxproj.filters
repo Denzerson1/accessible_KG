@@ -15,33 +15,27 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Console.cpp">
-      <Filter>Ressourcendateien</Filter>
+    <ClCompile Include="ITP Projekt.cpp">
+      <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Ressourcendateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Unmanager.cpp">
-      <Filter>Ressourcendateien</Filter>
+    <ClCompile Include="Server.cpp">
+      <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Console.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Unmanager.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Keylogger.h">
+    <ClInclude Include="Autostart.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="SerialCheck.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Autostart.h">
+    <ClInclude Include="Keylogger.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="HideProc.h">
+    <ClInclude Include="Injector.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Antivirus.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
